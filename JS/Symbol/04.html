@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 在遍历中，key如果是Symbol类型会怎样？
+      let a = Symbol("a")
+      let b = Symbol("b")
+
+      const obj = {
+        name: "1",
+        [a]: "a",
+        [b]: "b",
+      }
+
+      console.log(obj)
+
+      for (const key in obj) {
+        // 找不到symbol类型的key
+        // 但它不是私有属性
+        console.log(key)
+      }
+
+      // 不能用 for of 因为对象没有迭代器
+
+      // 只获取symbol类型的key
+      console.log(Object.getOwnPropertySymbols(obj)) // [Symbol(a), Symbol(b)]
+
+      // 获取全部key
+      console.log(Reflect.ownKeys(obj)) // ['name', Symbol(a), Symbol(b)]
+    </script>
+  </body>
+</html>

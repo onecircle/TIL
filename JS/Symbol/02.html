@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Symbol 本身的提出就是为了解决对象中重复key的问题 确保key不冲突
+      let s = Symbol()
+
+      // 写法1
+      let obj = {}
+      obj[s] = "hello"
+      console.log(obj) // { Symbol(): "hello" }
+
+      // 写法2
+      let obj1 = {
+        [s]: "hello",
+      }
+      console.log(obj1)
+      console.log(obj1[s])
+
+      // 对象方法
+      // let obj2 = {
+      //   [s]: (arg) => {
+      //     console.log(arg)
+      //   },
+      // }
+      // 增强写法
+      let obj2 = {
+        [s](arg) {
+          console.log(arg)
+        },
+      }
+      obj2[s](123)
+
+      // 2. 定义常量，确保常量唯一
+      const RED = Symbol()
+      const GREEN = Symbol()
+    </script>
+  </body>
+</html>

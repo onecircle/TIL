@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 定义
+      const s = Symbol()
+      console.log(s) // Symbol() 红色
+      console.log(typeof s) // symbol 表示什么类型的时候 小写
+
+      // 2. Symbol函数参数 是一个字符串 表示描述
+      const s1 = Symbol("bar")
+      const s2 = Symbol("foo")
+      console.log(s1) // Symbol(bar) 红色
+      console.log(s2) // Symbol(foo) 红色
+
+      console.log(s1.toString()) // Symbol(bar)
+      console.log(s2.toString()) // Symbol(foo)
+
+      // 3. 如果参数为对象，调用toString方法
+      const obj = {
+        toString() {
+          return "abc"
+        },
+      }
+
+      const s3 = Symbol(obj)
+      console.log(s3) // Symbol(abc)
+
+      // 4. Symbol 独一无二
+      const s4 = Symbol("boo")
+      const s5 = Symbol("boo")
+      console.log(s4 === s5) // false
+
+      // 5. 类型转换
+      // a. 转boolean
+      console.log(Boolean(Symbol())) // true
+
+      // b. 转number
+      // console.log(Number(Symbol())) // 报错
+      // console.log(+Symbol()) // 报错
+
+      // c. 转string
+      console.log(String(Symbol())) // Symbol()
+      console.log(Symbol("abc").toString()) // Symbol(abc)
+
+      // 6. 不参与运算
+      // console.log("2" + Symbol()) // 报错
+
+      // 7. 获取描述
+      console.log(Symbol("boo").description) // boo
+    </script>
+  </body>
+</html>

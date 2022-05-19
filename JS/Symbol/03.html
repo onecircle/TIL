@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 魔术字符串 在代码中强耦合 多次出现 应消除
+      // 例 获取图形面积的函数
+      // Triangle 就是魔术字符串
+      function getArea(shape, options) {
+        let area = 0
+
+        switch (shape) {
+          case "Triangle":
+            area = 0.5 * options.width * options.height
+            break
+          // ....
+        }
+
+        return area
+      }
+
+      getArea("Triangle", { width: 100, height: 100 })
+
+      // 改进
+      const shapeType = {
+        triangle: Symbol(),
+      }
+      // 后续用的时候全是 shapeType.triangle
+    </script>
+  </body>
+</html>
