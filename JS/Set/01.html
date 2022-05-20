@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <script>
+      // 1. 构造函数Set 生成Set数据结构
+      const s = new Set()
+      console.log(s) // Set(0) { size: 0 }
+
+      // 2. 加入成员 成员值唯一
+      // a. add 只能一个一个加
+      s.add(1)
+      s.add(1)
+      s.add("1").add(0)
+      console.log(s)
+
+      // b. 初始化时传入数组（或者具有iterable接口的其他数据结构）
+      const s1 = new Set([1, 2, 3, 4, 5, 4, 5])
+      console.log(s1)
+
+      const s2 = new Set(document.querySelectorAll("div")) // 类似数组对象
+      console.log(s2)
+
+      // b.1 new的时候如何理解
+      // new Set([1, 2, 3, 4, 5, 4, 5]) 等价于
+      const s3 = new Set()
+      ;[1, 2, 3, 4, 5, 4, 5].forEach((item) => {
+        s3.add(item)
+      })
+      console.log(s3)
+      // 所以可以被forEach就可以被添加
+
+      // 3. size属性 成员个数
+      console.log(s3.size)
+
+      // 4. 类型转换
+      // a. Set 转 Array
+      console.log([...s3])
+      console.log(Array.from(s3))
+
+      // b. Array 转 Set
+      // new Set(arr)
+
+      // 5. 去重
+      // a. 数组 [...new Set(arr)]
+      console.log([...new Set([1, 2, 2, 2])])
+
+      // b. 字符串 [...new Set(str)].join("")
+      console.log([...new Set("hddhk")].join(""))
+
+      // 6. Set如何判断成员值是否相同？
+      // 类似于 ===（精确相等运算符）
+      // 唯一的区别：Set认为NaN相等，===认为NaN不相等
+      // 对象始终不相等
+      console.log(NaN === NaN) // false
+      console.log({} === {}) // false
+      console.log(new Set().add(NaN).add(NaN)) // size 1
+      console.log(new Set().add({}).add({})) // size 2
+    </script>
+  </body>
+</html>

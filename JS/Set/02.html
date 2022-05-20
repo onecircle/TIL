@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 操作方法
+      // add delete has clear
+      // add 添加 返回Set本身 所以可以链式
+      // delete 删除某个值 返回布尔值 表示是否删除成功
+      // has 是否为Set成员 返回布尔值
+      // clear 清空Set 没有返回值
+      const s = new Set()
+      s.add(1).add(2).add(2)
+      console.log(s)
+      console.log(s.delete(1))
+      console.log(s.delete(4))
+      console.log(s.has(1))
+      console.log(s.has(2))
+      console.log(s.clear())
+      console.log(s)
+
+      // 2. 遍历方法
+      // keys values entries forEach
+      // 迭代器
+      const s1 = new Set(["red", "green", "blue"])
+      console.log(s1.keys()) // SetIterator {'red', 'green', 'blue'}
+      console.log(s1.values()) // SetIterator {'red', 'green', 'blue'}
+      console.log(s1.entries()) // SetIterator {'red' => 'red', 'green' => 'green', 'blue' => 'blue'}
+
+      // for of
+      // 默认s1.values()
+      for (const iterator of s1) {
+        console.log(iterator)
+      }
+
+      // forEach
+      s1.forEach((item, key, set) => {
+        console.log(item, key, set)
+      })
+
+      // 3. Set可以扩展运算符（...）的原因
+      // 因为 ... 内部使用 for of 遍历
+      // 所以只要[...set]转成了Array，那Array的方法都可以用
+    </script>
+  </body>
+</html>
