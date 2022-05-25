@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="myDiv"></div>
+    <script>
+      // Hash结构：键值对的集合
+      // 对象就是Hash结构，但是key只能是字符串或symbol
+      // 于是有了Map
+      // obj的局限
+      const data = {}
+
+      const el = document.getElementById("myDiv")
+      data[el] = "metadata"
+      console.log(data)
+      console.log(data["[object HTMLDivElement]"])
+
+      // Map
+      const map = new Map()
+      const obj = {
+        p: "hello",
+      }
+
+      map.set(obj, "content")
+      console.log(map)
+      console.log(map.get(obj))
+      console.log(map.has(obj))
+      console.log(map.delete(obj))
+      console.log(map.has(obj))
+
+      // 数组作为参数
+      // 任何具有Iterator接口 且每个成员都是一个双元素的数组的数据结构，都可以是Map的参数
+      // 即Set Map也可以
+      const map1 = new Map([
+        ["name", "张三"],
+        ["title", "Author"],
+      ])
+      console.log(map1)
+      console.log(map1.size)
+
+      // 等价于
+      const arr = [
+        ["name", "张三"],
+        ["title", "Author"],
+      ]
+      const map2 = new Map()
+      arr.forEach(([key, value]) => {
+        map2.set(key, value)
+      })
+      console.log(map2)
+
+      // Set
+      const set = new Set([
+        ["foo", 1],
+        ["bar", 2],
+      ])
+      console.log(set)
+      const map3 = new Map()
+      const arr1 = [...set]
+      console.log(arr1)
+      arr1.forEach((key, value) => {
+        map3.set(key, value)
+      })
+      console.log(map3)
+      console.log(new Map(set))
+    </script>
+  </body>
+</html>
