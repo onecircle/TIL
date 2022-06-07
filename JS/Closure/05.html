@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 闭包中的this
+      let hd = {
+        user: "",
+        get: function () {
+          let user = 1
+          // 闭包
+          // 但this不会传进去
+          return function () {
+            console.log(this)
+            return this.user
+          }
+        },
+      }
+
+      let a = hd.get()
+      console.log(a()) // this指向window
+
+      // 修改
+      // that
+      let hd1 = {
+        user: "123",
+        get: function () {
+          const that = this
+          // 闭包 访问上下文this
+          return function () {
+            return that.user
+          }
+        },
+      }
+
+      let a1 = hd1.get()
+      console.log(a1())
+
+      // 修改
+      // 箭头函数
+      let hd2 = {
+        user: "123",
+        get: function () {
+          // 闭包 箭头函数this看上下文
+          return () => {
+            return this.user
+          }
+        },
+      }
+
+      let a2 = hd2.get()
+      console.log(a2())
+    </script>
+  </body>
+</html>

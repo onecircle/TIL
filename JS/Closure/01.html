@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 全局作用域
+      // 函数作用域
+      // 块级作用域 let const
+      // 垃圾回收机制
+      // 内存泄漏
+
+      function hd() {
+        let n = 1
+
+        function show() {
+          n = n + 1
+          console.log(n)
+        }
+        show()
+      }
+
+      // 开副本
+      hd() // 2
+      hd() // 2
+      hd() // 2
+
+      function hd1() {
+        let n = 1
+
+        // 闭包
+        // 使用到了hd1中的变量
+        // 内存无法释放
+        return function () {
+          n = n + 1
+          console.log(n)
+        }
+      }
+
+      // a也在开副本
+      // 但是变量是hd1的，无法释放
+      let a = hd1()
+      a() // 2
+      a() // 3
+      a() // 4
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 回调 & 闭包
+      let arr = [1, 4, 3, 7, 88, 43, 56, 33]
+
+      // arr.sort(function (a, b) {
+      //   return a - b
+      // })
+
+      // arr.sort(function (a, b) {
+      //   return b - a
+      // })
+
+      // asc 升序
+      // desc 降序
+      function order(type = "asc") {
+        // 利用闭包作为callback
+        return function (a, b) {
+          if (type === "asc") {
+            return a - b
+          }
+          return b - a
+        }
+      }
+
+      arr.sort(order("desc"))
+      arr.sort(order())
+
+      console.log(arr)
+    </script>
+  </body>
+</html>

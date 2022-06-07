@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div desc="hdr">hdr</div>
+    <div desc="hd">hd</div>
+    <script>
+      let divs = document.querySelectorAll("div")
+      // divs.forEach((item) => {
+      //   // 闭包，使用到了item
+      //   // 那这样子item会一直存在，不会被释放
+      //   // 如果div很多，造成内存泄漏
+      //   item.addEventListener("click", function () {
+      //     console.log(item.getAttribute("desc"))
+      //   })
+      // })
+
+      // 解决
+      divs.forEach((item) => {
+        let desc = item.getAttribute("desc")
+        item.addEventListener("click", function () {
+          // 这里面只用desc
+          console.log(desc)
+        })
+        // 手动释放
+        item = null
+      })
+    </script>
+  </body>
+</html>

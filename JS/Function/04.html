@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // show()
+      // console.log(show)
+      // console.log(window.show)
+
+      // 函数声明 提升
+      // 全局作用域中加入window
+      function show() {
+        console.log(1)
+      }
+
+      // 函数表达式 不会提升 打印变量（函数名） undefined
+      // 也就是说var 会变量提升，但是等到执行的时候才会将指针指向函数
+      // var 会加入window
+      var show = function () {
+        console.log(3)
+      }
+
+      // let 不会加入window
+      // 也不会变量提升
+      // 提前使用show 会报错
+      let show = function () {
+        console.log(2)
+      }
+
+      // console.log(window.show)
+    </script>
+  </body>
+</html>
